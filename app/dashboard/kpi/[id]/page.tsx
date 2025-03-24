@@ -82,7 +82,7 @@ export default async function KpiDetailPage({
     notFound()
   }
 
-  const canEdit = session?.user.role === "admin" || session?.user.id === kpi.onwer1 || session?.user.id === kpi.onwer2
+  const canEdit = session?.user.role === "admin" || session?.user.role === "manager" || session?.user.id === kpi.onwer1 || session?.user.id === kpi.onwer2
 
   const canApprove = session?.user.role === "admin" || session?.user.role === "approver"
 
