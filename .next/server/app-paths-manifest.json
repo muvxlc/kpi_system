@@ -1,0 +1,7 @@
+{
+  "/api/kpi/route": "app/api/kpi/route.js",
+  "/api/kpi/[id]/route": "app/api/kpi/[id]/route.js",
+  "/dashboard/kpi/page": "app/dashboard/kpi/page.js",
+  "/dashboard/kpi/[id]/page": "app/dashboard/kpi/[id]/page.js",
+  "/dashboard/kpi/[id]/edit/page": "app/dashboard/kpi/[id]/edit/page.js"
+}
