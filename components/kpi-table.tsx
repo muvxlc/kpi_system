@@ -339,7 +339,7 @@ export function KpiTable({ kpis, total, page, limit, userRole }: KpiTableProps) 
                             <span>ดูรายละเอียด</span>
                           </Link>
                         </DropdownMenuItem>
-                        {(userRole === "admin" || kpi.onwer1 === user?.id || kpi.onwer2 === user?.id) && (
+                        {(userRole === "admin" || userRole === "manager" || kpi.onwer1 === user?.id || kpi.onwer2 === user?.id) && (
                           <DropdownMenuItem asChild>
                             <Link href={`/dashboard/kpi/${kpi.id}/edit`}>
                               <Edit className="mr-2 h-4 w-4" />

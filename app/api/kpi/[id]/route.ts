@@ -27,11 +27,11 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
       const [rows] = await conn.execute(
         `SELECT k.*, u1.name as owner1_name, u2.name as owner2_name, d.name as dept_name
-       FROM kpis k
-       LEFT JOIN users u1 ON k.onwer1 = u1.id
-       LEFT JOIN users u2 ON k.onwer2 = u2.id
-       LEFT JOIN departments d ON k.dept = d.id
-       WHERE k.id = ?`,
+     FROM kpis k
+     LEFT JOIN users u1 ON k.onwer1 = u1.id
+     LEFT JOIN users u2 ON k.onwer2 = u2.id
+     LEFT JOIN departments d ON k.dept = d.id
+     WHERE k.id = ?`,
         [id],
       )
 
@@ -47,9 +47,11 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
       // ตรวจสอบสิทธิ์การเข้าถึง KPI
       const kpi = kpis[0]
 
+      // แก้ไขตรงนี้: เพิ่ม role manager ให้สามารถเข้าถึงข้อมูล KPI ได้
       if (
         session.user.role !== "admin" &&
         session.user.role !== "approver" &&
+        session.user.role !== "manager" && // เพิ่ม manager ให้มีสิทธิ์เข้าถึง
         session.user.id !== kpi.onwer1 &&
         session.user.id !== kpi.onwer2
       ) {
@@ -107,7 +109,12 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
       console.log("PUT /api/kpi/[id] - User details:", { id: session.user.id, role: session.user.role })
 
       // ตรวจสอบสิทธิ์การแก้ไข KPI
-      if (session.user.role !== "admin" && session.user.id !== kpi.onwer1 && session.user.id !== kpi.onwer2) {
+      if (
+        session.user.role !== "admin" &&
+        session.user.role !== "manager" &&
+        session.user.id !== kpi.onwer1 &&
+        session.user.id !== kpi.onwer2
+      ) {
         return NextResponse.json({ error: "ไม่มีสิทธิ์แก้ไขข้อมูล KPI นี้" }, { status: 403 })
       }
 

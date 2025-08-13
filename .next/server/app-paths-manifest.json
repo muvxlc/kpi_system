@@ -1,7 +1,9 @@
 {
   "/api/kpi/route": "app/api/kpi/route.js",
-  "/api/kpi/[id]/route": "app/api/kpi/[id]/route.js",
+  "/api/kpi/[id]/approve/route": "app/api/kpi/[id]/approve/route.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/kpi/[id]/edit/page": "app/dashboard/kpi/[id]/edit/page.js",
   "/dashboard/kpi/page": "app/dashboard/kpi/page.js",
-  "/dashboard/kpi/[id]/page": "app/dashboard/kpi/[id]/page.js",
-  "/dashboard/kpi/[id]/edit/page": "app/dashboard/kpi/[id]/edit/page.js"
+  "/dashboard/users/[id]/edit/page": "app/dashboard/users/[id]/edit/page.js",
+  "/dashboard/users/page": "app/dashboard/users/page.js"
 }
